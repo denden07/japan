@@ -1,3 +1,4 @@
+
 <div class="banner" >
 
     <!-- form for finding places -->
@@ -7,25 +8,28 @@
         </p>
 
 
-        <form action="">
+        <form action="/redirect-search" method="post">
+            @csrf
         <div class="city-form-select">
 
 
 
 
-            <input id="places-select" v-model="places" name=""  type="text" placeholder="I'm looking for...">
+            <input id="places-select"  name="places"  type="text" placeholder="I'm looking for..." >
 
 
 
-            <select class="" id="city-select" v-model="city" name="">
+            <select class="" id="city-select" name="city" required>
                 <option disabled selected>Top Cities</option>
-                <option value="">Tokyo</option>
-                <option value="">Yokohama</option>
-                <option value="">Kyoto</option>
-                <option value="">Osaka</option>
-                <option value="">Sapporo</option>
-                <option value="">Nagoya</option>
+                <option value="35.6762,139.6503">Tokyo</option>
+                <option value="35.4437,139.6380">Yokohama</option>
+                <option value="35.0116,135.7681">Kyoto</option>
+                <option value="34.6937,135.5023">Osaka</option>
+                <option value="43.0618,141.3545">Sapporo</option>
+                <option value="35.1815,136.9066">Nagoya</option>
             </select>
+
+            <input id="radius" type="number" placeholder="Radius" name="radius" >
 
 
 

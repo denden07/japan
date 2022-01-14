@@ -18,7 +18,9 @@
 body {
   padding: 0;
   margin: 0;
+  background: #C5C5C5;
 }
+
 
 
 nav {
@@ -154,18 +156,15 @@ nav .icon-burger .line {
   padding: 10px;
 }
 
-#places-select
+#places-select ,#city-select , #radius,
+#places-select-comp ,#city-select-comp , #radius-comp
 {
 
   border: 1px solid lightgray;
   border-radius: 4px;
 }
-#city-select
-{
 
-  border: 1px solid lightgray;
-  border-radius: 4px;
-}
+
 
 .city-form-button
 {
@@ -241,10 +240,30 @@ footer p
 }
 
 
+//places component styles
+
+//search bar
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//media queries
 
 @media screen and (max-width: 600px) {
   .japan-city-card {
@@ -261,13 +280,13 @@ footer p
   //city search form
 .city-form
 {
-  width: 375px !important;
+  width: 500px !important;
   height: 230px !important;
   background: white!important;
   border-radius: 6px!important;
   position: absolute!important;
   top: 30%!important;
-  left: 60%!important;
+  left: 45%!important;
 }
 
   .city-form .city-form-title
@@ -284,15 +303,22 @@ footer p
 
   #places-select
   {
-    width: 48%;
+    width: 33%;
     display: inline;
     height: 2rem;
   }
   #city-select
   {
     height: 2rem;
-    width: 48%;
+    width: 33%;
 
+  }
+
+  #radius
+  {
+    height: 2rem;
+    width: 32%;
+    display: inline;
   }
 
   .city-form-button
@@ -343,6 +369,102 @@ footer p
   {
     font-size: 1.2em;
   }
+
+
+
+
+
+  //places component styles
+
+  //search bar
+  .search-bar
+  {
+    width: 100%;
+    background: #C12824;
+    margin-top: 80px;
+    padding: 10px;
+    position: fixed;
+    z-index: 2;
+  }
+
+  #places-select-comp
+  {
+    width: 20%;
+    display: inline;
+    height: 2rem;
+  }
+  #city-select-comp
+  {
+    height: 2rem;
+    width: 20%;
+
+  }
+
+  #radius-comp
+  {
+    height: 2rem;
+    width: 10%;
+    display: inline;
+  }
+
+
+
+  //Places info
+
+  .places-info-container
+  {
+    background: white;
+    padding: 20px;
+    margin-bottom: 15px;
+    margin-right: 5px;
+    text-align:center;
+    border-radius: 5px;
+    cursor: pointer;
+    animation: easein 2s;
+  }
+
+  .places-info-container:hover
+  {
+    transform: scale(1.1);
+  }
+
+  .places-list-container
+  {
+    //overflow-y: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    height:auto;
+    width: 20%;
+    margin-top: 139px;
+
+
+
+  }
+
+  .places-list-container::-webkit-scrollbar
+  {
+    width: 0;
+    height: 0;
+
+  }
+
+  .places-desc-container
+  {
+    width: 75%;
+    background: white;
+
+    margin-top: 152px;
+    position: fixed;
+    right: 0;
+    margin-right: 10px;
+    height: 70vh;
+    border-radius: 5px;
+  }
+
+
+
+
+
 
 }
 
