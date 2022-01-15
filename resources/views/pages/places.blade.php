@@ -12,7 +12,7 @@
 
 <div id="app" class="content">
 
-    <places-component :api-data='{{$api_data}}' :places-data="{{$places}}" :radius-data="{{$radius}}" :ll-data="{{$ll}}"></places-component>
+    <places-component :api-data='{{$api_data}}' :places-data="{{$places}}" :radius-data="{{$radius}}" :ll-data="{{$ll}}" :weather-data="{{$weather}}"></places-component>
 
 </div>
 

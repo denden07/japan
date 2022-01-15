@@ -2,7 +2,7 @@
     <input id="nav-toggle" type="checkbox">
     <div class="logo">Visit Japan</div>
     <ul class="links">
-        <li><a href="#home">Home</a></li>
+        <li><a href="/">Home</a></li>
         {{--<li><a href="#about">Link</a></li>--}}
         {{--<li><a href="#work">Link</a></li>--}}
         {{--<li><a href="#projects">Link</a></li>--}}

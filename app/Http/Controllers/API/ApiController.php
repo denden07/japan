@@ -16,6 +16,28 @@ class ApiController extends Controller
 
 
 
+
+        if($request->city == '35.6762,139.6503')
+        {
+            $city = 'Tokyo';
+        }elseif ($request->city == '35.4437,139.6380')
+        {
+            $city = 'Yokohama';
+        }elseif($request->city == '35.0116,135.7681')
+        {
+            $city= 'Kyoto';
+        }elseif ($request->city == '34.6937,135.5023')
+        {
+            $city = 'Osaka';
+        }elseif ($request->city == '43.0618,141.3545')
+        {
+            $city = 'Sapporo';
+        }else
+        {
+            $city = 'Nagoya';
+        }
+
+
         $client = new \GuzzleHttp\Client();
 
         $response = $client->request('GET', 'https://api.foursquare.com/v3/places/search', [
@@ -35,6 +57,14 @@ class ApiController extends Controller
         ]);
 
 
+        $weather = $client->request('GET','https://api.openweathermap.org/data/2.5/weather',[
+            'query'=>[
+                'q'=>$city,
+                'appid' =>'7ec167be9a9025a5f820c881278a83e0',
+            ]
+        ]);
+
+
 
 
 
@@ -44,6 +74,7 @@ class ApiController extends Controller
                 'places'=> json_encode($request->places),
                 'radius'=> $request->radius,
                 'll'=> json_encode($request->city),
+                'weather'=> $weather->getBody(),
             ]
 
 
@@ -53,6 +84,27 @@ class ApiController extends Controller
 
     public function fetchPlaces(Request $request)
     {
+
+        if($request->city == '35.6762,139.6503')
+        {
+            $city = 'Tokyo';
+        }elseif ($request->city == '35.4437,139.6380')
+        {
+            $city = 'Yokohama';
+        }elseif($request->city == '35.0116,135.7681')
+        {
+            $city= 'Kyoto';
+        }elseif ($request->city == '34.6937,135.5023')
+        {
+            $city = 'Osaka';
+        }elseif ($request->city == '43.0618,141.3545')
+        {
+            $city = 'Sapporo';
+        }else
+        {
+            $city = 'Nagoya';
+        }
+
         $client = new \GuzzleHttp\Client();
 
         $response = $client->request('GET', 'https://api.foursquare.com/v3/places/search', [
@@ -71,9 +123,22 @@ class ApiController extends Controller
             ],
         ]);
 
-        return $response->getBody();
+        $weather = $client->request('GET','https://api.openweathermap.org/data/2.5/weather',[
+            'query'=>[
+                'q'=>$city,
+                'appid' =>'7ec167be9a9025a5f820c881278a83e0',
+            ]
+        ]);
 
 
+        return response()->json(
+
+            [
+               'places'=> json_decode($response->getBody()),
+                'weather'=> json_decode($weather->getBody()),
+
+
+            ]);
     }
 
     public function fetchPlaceDescription(Request $request)
@@ -85,7 +150,7 @@ class ApiController extends Controller
         $response = $client->request('GET', 'https://api.foursquare.com/v3/places/' . $request->fsq_id , [
 
             'query'=>[
-                'fields'=>'tips,location,stats,rating,description,hours,website,email,photos'
+                'fields'=>'tips,location,stats,rating,description,hours,website,email,photos,name,categories,hours_popular,tastes'
             ],
 
             'headers' => [

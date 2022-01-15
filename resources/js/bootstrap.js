@@ -1,10 +1,9 @@
 window._ = require('lodash');
 
 try {
-    // window.$ = window.jQuery = require('jquery');
+
     require('bootstrap');
-    // require('select2');
-    // $('select').select2();
+
 } catch (e) {}
 
 /**

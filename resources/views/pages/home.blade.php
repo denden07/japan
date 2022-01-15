@@ -20,7 +20,7 @@
 
 
             <select class="" id="city-select" name="city" required>
-                <option disabled selected>Top Cities</option>
+                <option value="" disabled selected>Top Cities</option>
                 <option value="35.6762,139.6503">Tokyo</option>
                 <option value="35.4437,139.6380">Yokohama</option>
                 <option value="35.0116,135.7681">Kyoto</option>
@@ -29,7 +29,7 @@
                 <option value="35.1815,136.9066">Nagoya</option>
             </select>
 
-            <input id="radius" type="number" placeholder="Radius" name="radius" >
+            <input id="radius" type="number" placeholder="Radius" name="radius" required>
 
 
 

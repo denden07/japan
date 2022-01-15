@@ -2,6 +2,8 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
 
 // Variables
@@ -31,7 +33,7 @@ nav {
   top: 0;
   font-family: 'Montserrat', sans-serif;
   padding: 0 5%;
-  height: 80px;
+  height: 50px;
   background-color: #fff;
 }
 nav .logo {
@@ -50,7 +52,7 @@ nav .links {
   width: 60%;
   height: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-end;
   align-items: center;
 }
 nav .links li {
@@ -163,13 +165,20 @@ nav .icon-burger .line {
   border: 1px solid lightgray;
   border-radius: 4px;
 }
-
-
-
 .city-form-button
 {
+  border: solid 1px lightgray;
+  border-radius: 3px;
+  color: white;
+  background: #C12824;
+  padding: 10px;
   width: 100%;
+  margin-top: 50px !important;
+
 }
+
+
+
 
 //Japan Desc
 .japan-desc
@@ -223,6 +232,19 @@ nav .icon-burger .line {
   font-family: 'Source Sans Pro', sans-serif;
 }
 
+.weather-container
+{
+  width: 20%;
+  display:inline;
+  float: right;
+  height: 39px;
+  background: white;
+  border-radius: 8px;
+  padding-left: 17px;
+  text-transform: capitalize;
+  text-align: center;
+}
+
 
 
 //footer
@@ -240,13 +262,104 @@ footer p
 }
 
 
-//places component styles
+//Desc-container
 
-//search bar
+.places-list-container ul
+{
+  list-style: none;margin-top: 10px
+}
 
 
 
 
+
+
+//comments-tips
+.tips-container
+{
+  width: 60%;
+}
+
+.card-no-border .card {
+  border: 0px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05)
+}
+
+.card-body {
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 1.25rem
+}
+
+.comment-widgets .comment-row:hover {
+  background: rgba(0, 0, 0, 0.02);
+  cursor: pointer
+}
+
+.comment-widgets .comment-row {
+  border-bottom: 1px solid rgba(120, 130, 140, 0.13);
+  padding: 15px
+}
+
+.comment-text:hover {
+  visibility: hidden
+}
+
+.comment-text:hover {
+  visibility: visible
+}
+
+.label {
+  padding: 3px 10px;
+  line-height: 13px;
+  color: #ffffff;
+  font-weight: 400;
+  border-radius: 4px;
+  font-size: 75%
+}
+
+.round img {
+  border-radius: 100%
+}
+
+.label-info {
+  background-color: #1976d2
+}
+
+.label-success {
+  background-color: green
+}
+
+.label-danger {
+  background-color: #ef5350
+}
+
+.action-icons a {
+  padding-left: 7px;
+  vertical-align: middle;
+  color: #99abb4
+}
+
+.action-icons a:hover {
+  color: #1976d2
+}
+
+.mt-100
+{
+  margin-top: 10px;
+}
+
+
+.mb-100 {
+  margin-bottom: 100px
+}
+
+.card
+{
+  height: 70vh;
+}
 
 
 
@@ -321,15 +434,6 @@ footer p
     display: inline;
   }
 
-  .city-form-button
-  {
-    border: solid 1px lightgray;
-    border-radius: 3px;
-    color: white;
-    background: #C12824;
-    padding: 10px;
-
-  }
 
   //Description Section
 
@@ -381,7 +485,7 @@ footer p
   {
     width: 100%;
     background: #C12824;
-    margin-top: 80px;
+    margin-top: 50px;
     padding: 10px;
     position: fixed;
     z-index: 2;
@@ -435,7 +539,7 @@ footer p
     -ms-overflow-style: none;
     height:auto;
     width: 20%;
-    margin-top: 139px;
+    margin-top: 110px;
 
 
 
@@ -453,15 +557,31 @@ footer p
     width: 75%;
     background: white;
 
-    margin-top: 152px;
+    margin-top: 123px;
     position: fixed;
     right: 0;
     margin-right: 10px;
-    height: 70vh;
+    height: 77vh;
     border-radius: 5px;
+    display: flex;
+    flex-direction: row;
   }
 
+  .places-description
+  {
+    line-height: 12px;
+    padding: 7px;
+  }
 
+  .modal-clickable
+  {
+    display: none;
+  }
+
+  .places-info-container
+  {
+    display: block;
+  }
 
 
 
@@ -469,7 +589,7 @@ footer p
 }
 
 
-@media screen and (min-width:320px) {
+@media screen and (min-width:320px) and (max-width: 1023px){
 //Banner
 
   .banner
@@ -487,22 +607,117 @@ footer p
     border-radius: 6px;
     position: absolute;
     top: 45% !important;
-    left: 8%;
+    left: 7%;
   }
   .city-form-select
   {
+
     margin-top: 35px;
   }
 
   .city-form-button
   {
-    margin-top: 30px;
+    margin-top: 10px;
+  }
+
+  .japan-city-card
+  {
+    float: none;
+  }
+
+  #places-select,
+  #city-select,
+  #radius
+  {
+    width: 100% !important;
+    margin-bottom: 4px;
+  }
+
+  .lower-banner
+  {
+    text-align: center;
+    position: relative;
+
+  }
+  .lower-banner-description
+  {
+    position: absolute;
+    top: 30%;
+  }
+
+  //Description Section
+  .search-bar
+  {
+    width: 100%;
+    background: #C12824;
+    margin-top: 50px;
+    padding: 10px;
+    position: fixed;
+    z-index: 2;
+  }
+
+  .places-desc-container
+  {
+    display:none
+  }
+
+  .modal-clickable
+  {
+    display: block;
+    background: white;
+    padding: 10px;
+    width: 100%;
+    margin-left:-15px;
+    margin-bottom: 15px;
+    text-align:center;
+    border-radius: 5px;
+    cursor: pointer;
+    animation: easein 2s;
+  }
+  .places-list-container
+  {
+    width: 100%;
+    margin-top:160px
+  }
+  #places-select-comp,
+
+  #radius-comp
+  {
+    width: 20%;
+  }
+  #city-select-comp
+  {
+    width: 25%;
+  }
+
+  .weather-container
+  {
+    float: none;
+  }
+
+  .places-info-container
+  {
+    display: none;
   }
 
 
-  //Description Section
+
+
+
+
+
 
 }
-
+@media screen and (min-width:600px) and (max-width: 1023px)
+{
+  .places-info-container img
+  {
+    width: 40% !important;
+  }
+  .places-info-container p
+  {
+    font-size: 18px;
+  }
+}
 
 
