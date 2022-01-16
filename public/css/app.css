@@ -18275,6 +18275,10 @@ footer p {
     margin-top: 10px;
   }
 
+  .japan-card {
+    height: 400px;
+  }
+
   .lower-banner {
     position: relative;
   }

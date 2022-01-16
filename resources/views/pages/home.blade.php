@@ -59,7 +59,7 @@
     <div class="japan-desc-cards-row">
 
         <div class="japan-city-card">
-            <div class="card">
+            <div class="card japan-card">
                 <img src="/images/tokyo.jpg">
                 <h3>Tokyo</h3>
                 <p>
@@ -72,7 +72,7 @@
         </div>
 
         <div class="japan-city-card">
-            <div class="card">
+            <div class="card japan-card">
                 <img src="images/yokohama.jpg">
                 <h3>Yokohama</h3>
                 <p>
@@ -85,7 +85,7 @@
         </div>
 
         <div class="japan-city-card">
-            <div class="card">
+            <div class="card japan-card">
                 <img src="/images/kyoto.jpg">
                 <h3>Kyoto</h3>
                 <p>
@@ -102,7 +102,7 @@
     <div class="japan-desc-cards-row" style="margin-top: 4%">
 
         <div class="japan-city-card">
-            <div class="card">
+            <div class="card japan-card">
                 <img src="/images/osaka.jpg" >
                 <h3>Osaka</h3>
                 <p>
@@ -114,7 +114,7 @@
         </div>
 
         <div class="japan-city-card">
-            <div class="card">
+            <div class=" japan-card card ">
                 <img src="/images/sapporo.jpg" >
                 <h3>Sapporo</h3>
                 <p>
@@ -125,7 +125,7 @@
         </div>
 
         <div class="japan-city-card">
-            <div class="card">
+            <div class="card  japan-card">
                 <img src="/images/nagoya.jpg">
                 <h3>Nagoya</h3>
                 <p>
