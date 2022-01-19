@@ -21,4 +21,3 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/fetch-places',[ApiController::class,'fetchPlaces']);
 Route::get('/fetch-place-description',[ApiController::class,'fetchPlaceDescription']);
-

@@ -19,3 +19,4 @@ Route::get('/', function () {
 });
 
 Route::post('/redirect-search',[ApiController::class,'redirect']);
+Route::get('/get-env',[ApiController::class,'getApi']);

@@ -5592,13 +5592,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "places",
-  props: ['apiData', 'placesData', 'radiusData', 'llData', 'weatherData'],
+  props: ['placesData', 'placesInfoData', 'radiusData', 'llData', 'weatherData'],
   data: function data() {
     return {
       places: '',
       radius: '',
       city: '',
-      information: this.apiData,
+      information: this.placesData,
       desc: {},
       descShow: false,
       day: '',
@@ -5625,8 +5625,8 @@ __webpack_require__.r(__webpack_exports__);
           'places': this.places
         }
       }).then(function (res) {
-        _this.information = res.data.places;
-        _this.weather = res.data.weather;
+        _this.information = res.data.places_data;
+        _this.weather = res.data.weather_data;
         _this.descShow = false;
       })["catch"]();
     },
@@ -5687,7 +5687,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    this.places = this.placesData;
+    this.places = this.placesInformationData;
     this.city = this.llData;
     this.radius = this.radiusData;
     this.getDay();

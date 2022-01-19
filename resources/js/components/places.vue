@@ -296,14 +296,15 @@
     export default {
 
         name: "places",
-        props : ['apiData','placesData','radiusData','llData','weatherData'],
+        props : ['placesData','placesInfoData','radiusData','llData','weatherData'],
+
   data()
   {
     return{
         places:'',
         radius:'',
         city:'',
-        information: this.apiData,
+        information: this.placesData,
         desc:{},
         descShow:false,
         day:'',
@@ -324,7 +325,6 @@
                 {
                     $('#place-detail-modal').modal('show');
                     this.descShow = true;
-
                     this.fetchPlaceInfo(e);
                 },
 
@@ -339,8 +339,8 @@
                                 'places':this.places,
                             }
                     }).then( res=>{
-                        this.information = res.data.places;
-                        this.weather = res.data.weather;
+                        this.information = res.data.places_data;
+                        this.weather = res.data.weather_data;
 
                         this.descShow = false
 
@@ -432,15 +432,10 @@
         mounted()
             {
 
-                this.places = this.placesData;
+                this.places = this.placesInformationData;
                 this.city = this.llData;
                 this.radius= this.radiusData;
-
-               this.getDay()
-                this.carouselController();
-
-
-
+                this.getDay()
 
 
             },
