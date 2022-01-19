@@ -5554,45 +5554,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "places",
-  props: ['placesData', 'placesInfoData', 'radiusData', 'llData', 'weatherData'],
+  props: ['placesData', 'placesDescription', 'radiusData', 'llData', 'weatherData'],
   data: function data() {
     return {
       places: '',
@@ -5607,14 +5571,26 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    /**
+     *Closes mobile enabled modal
+     */
     closeModal: function closeModal() {
       $('#place-detail-modal').modal('hide');
     },
+
+    /**
+     *Open mobile enabled modal
+     */
     openPlaceModal: function openPlaceModal(e) {
       $('#place-detail-modal').modal('show');
       this.descShow = true;
       this.fetchPlaceInfo(e);
     },
+
+    /**
+     *Fetches API data from the backend
+     * Filters places according to ll, radius and type of place
+     */
     fetchPlaces: function fetchPlaces() {
       var _this = this;
 
@@ -5630,6 +5606,10 @@ __webpack_require__.r(__webpack_exports__);
         _this.descShow = false;
       })["catch"]();
     },
+
+    /**
+     *Fetches data from the api of an specific place
+     */
     fetchPlaceInfo: function fetchPlaceInfo(e) {
       var _this2 = this;
 
@@ -5643,6 +5623,10 @@ __webpack_require__.r(__webpack_exports__);
         _this2.descShow = true;
       });
     },
+
+    /**
+     *Day method for filtering day
+     */
     getDay: function getDay() {
       var d = new Date();
       var day = d.getDay();
@@ -5672,6 +5656,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   computed: function computed() {
+    /**
+     *Renders carousel
+     */
     carouselController();
     {
       $('#carousel-1').carousel({
@@ -5687,11 +5674,13 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    this.places = this.placesInformationData;
+    /**
+     *For passing v-model value from props
+     */
+    this.places = this.placesDescription;
     this.city = this.llData;
     this.radius = this.radiusData;
     this.getDay();
-    this.carouselController();
   }
 });
 

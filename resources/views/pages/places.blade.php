@@ -11,8 +11,8 @@
 @include('parts.nav')
 
 <div id="app" class="content">
-
-    <places-component :places-data='{{$places_data}}' :places-info-data="{{$places_info_data}}" :radius-data="{{$radius_data}}" :ll-data="{{$ll_data}}" :weather-data="{{$weather_data}}"></places-component>
+    <!-- Passes properties from blade to vue -->
+    <places-component :places-data='{{$places_data}}' :places-description="{{$places_description}}" :radius-data="{{$radius_data}}" :ll-data="{{$ll_data}}" :weather-data="{{$weather_data}}"></places-component>
 
 </div>
 

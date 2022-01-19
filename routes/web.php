@@ -18,5 +18,5 @@ Route::get('/', function () {
     return view('layouts.home');
 });
 
-Route::post('/redirect-search',[ApiController::class,'redirect']);
-Route::get('/get-env',[ApiController::class,'getApi']);
+Route::post('/redirect-search',[ApiController::class,'redirectFetchPlaces']);
+

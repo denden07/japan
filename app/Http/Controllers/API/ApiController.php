@@ -9,93 +9,60 @@ use App\Http\Controllers\Classes\ApiRecieverController;
 class ApiController extends Controller
 {
 
-    private function getApi(Request $request)
+    public function variables(Request $request)
     {
+        $city = $request->city;
+        $places = $request->places;
+        $radius = $request->radius;
 
+        $api_receiver = new ApiRecieverController();
+        $api_result_response = $api_receiver ->getApi($city, $places, $radius);
 
-        if ($request->city == '35.6762,139.6503') {
-            $city = 'Tokyo';
-        } elseif ($request->city == '35.4437,139.6380') {
-            $city = 'Yokohama';
-        } elseif($request->city == '35.0116,135.7681') {
-            $city= 'Kyoto';
-        } elseif ($request->city == '34.6937,135.5023') {
-            $city = 'Osaka';
-        } elseif ($request->city == '43.0618,141.3545') {
-            $city = 'Sapporo';
-        } else {
-            $city = 'Nagoya';
-        }
-
-
-
-        $foursquare_key = env("FOURSQUARE_KEY");
-        $openweather_key = env("OPENWEATHER_KEY");
-
-
-        $client = new \GuzzleHttp\Client();
-
-        $places = $client->request('GET', 'https://api.foursquare.com/v3/places/search', [
-
-            'query'=>[
-                'll' => $request->city,
-                'radius'=>$request->radius,
-                'query'=>$request->places,
-                'limit'=>50,
-                'fields'=>'name,photos,location,rating,fsq_id'
-            ],
-            'headers' => [
-                'Accept' => 'application/json',
-                'Authorization' =>$foursquare_key ,
-            ],
-        ]);
-
-        $weather = $client->request('GET','https://api.openweathermap.org/data/2.5/weather',[
-            'query'=>[
-                'q'=>$city,
-                'appid' => $openweather_key,
-            ]
-        ]);
-
-        return ['places'=>$places,'weather'=>$weather];
+        return
+            [
+                'city' => $city,
+                'places' => $places,
+                'radius' => $radius,
+                'places_api' => $api_result_response['places_api']->getBody(),
+                'weather_api' => $api_result_response['weather_api']->getBody(),
+            ];
     }
 
-
-
-    public function redirect(Request $request)
+    public function redirectFetchPlaces(Request $request)
     {
 
-        $api_result =  $this->getApi($request);
+        $api_variables = $this->variables($request);
 
         return view('pages.places')->with(
             [
-                'places_data' => $api_result['places']->getBody(),
-                'places_info_data'=> json_encode($request->places),
-                'radius_data'=> $request->radius,
-                'll_data'=> json_encode($request->city),
-                'weather_data'=> $api_result['weather']->getBody(),
-            ]
-        );
+                'places_data' => $api_variables['places_api'],
+                'places_description'=> json_encode($api_variables['places']),
+                'radius_data'=> $api_variables['radius'],
+                'll_data'=> json_encode($api_variables['city']),
+                'weather_data'=> $api_variables['weather_api'],
+            ]);
 
     }
 
     public function fetchPlaces(Request $request)
     {
 
-        $api_result =  $this->getApi($request);
+        $api_variables = $this->variables($request);
 
         return response()->json(
-
             [
-                'places_data'=> json_decode($api_result['places']->getBody()),
-                'weather_data'=> json_decode($api_result['weather']->getBody()),
+                'places_data' => json_decode($api_variables['places_api']),
+                'weather_data'=> json_decode($api_variables['weather_api']),
             ]);
+
     }
 
     public function fetchPlaceDescription(Request $request)
     {
 
         $client = new \GuzzleHttp\Client();
+
+        $foursquare_key = env("FOURSQUARE_KEY");
 
         $places_description = $client->request('GET', 'https://api.foursquare.com/v3/places/' . $request->fsq_id , [
 
@@ -105,7 +72,7 @@ class ApiController extends Controller
 
             'headers' => [
                 'Accept' => 'application/json',
-                'Authorization' => 'fsq3wPFDerX5lWK/7gIhncipauFdKbk5DAXuyfaU0kIaPm4=',
+                'Authorization' => $foursquare_key,
             ],
         ]);
 
