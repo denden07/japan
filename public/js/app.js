@@ -5561,7 +5561,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       places: '',
       radius: '',
-      city: '',
+      ll: '',
       information: this.placesData,
       desc: {},
       descShow: false,
@@ -5596,7 +5596,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/fetch-places', {
         params: {
-          'city': this.city,
+          'll': this.ll,
           'radius': this.radius,
           'places': this.places
         }
@@ -5678,7 +5678,7 @@ __webpack_require__.r(__webpack_exports__);
      *For passing v-model value from props
      */
     this.places = this.placesDescription;
-    this.city = this.llData;
+    this.ll = this.llData;
     this.radius = this.radiusData;
     this.getDay();
   }
@@ -49889,12 +49889,12 @@ var render = function () {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.city,
-              expression: "city",
+              value: _vm.ll,
+              expression: "ll",
             },
           ],
           staticClass: "city",
-          attrs: { id: "city-select-comp", name: "city", required: "" },
+          attrs: { id: "city-select-comp", name: "ll", required: "" },
           on: {
             change: function ($event) {
               var $$selectedVal = Array.prototype.filter
@@ -49905,9 +49905,7 @@ var render = function () {
                   var val = "_value" in o ? o._value : o.value
                   return val
                 })
-              _vm.city = $event.target.multiple
-                ? $$selectedVal
-                : $$selectedVal[0]
+              _vm.ll = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
             },
           },
         },

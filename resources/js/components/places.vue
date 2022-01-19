@@ -5,7 +5,7 @@
 
             <input id="places-select-comp" v-model="places"  name="places"  type="text" placeholder="I'm looking for..." >
 
-            <select v-model="city" class="city" id="city-select-comp" name="city" required>
+            <select v-model="ll" class="city" id="city-select-comp" name="ll" required>
                 <option disabled selected>Top Cities</option>
                 <option value="35.6762,139.6503">Tokyo</option>
                 <option value="35.4437,139.6380">Yokohama</option>
@@ -268,7 +268,7 @@
     return{
         places:'',
         radius:'',
-        city:'',
+        ll:'',
         information: this.placesData,
         desc:{},
         descShow:false,
@@ -309,7 +309,7 @@
                     axios.get('/api/fetch-places',{
                         params:
                             {
-                                'city':this.city,
+                                'll':this.ll,
                                 'radius':this.radius,
                                 'places':this.places,
                             }
@@ -413,7 +413,7 @@
                  *For passing v-model value from props
                  */
                 this.places = this.placesDescription;
-                this.city = this.llData;
+                this.ll = this.llData;
                 this.radius= this.radiusData;
 
 

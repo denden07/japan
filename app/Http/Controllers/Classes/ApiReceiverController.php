@@ -6,20 +6,19 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 
-class ApiRecieverController extends Controller
+class ApiReceiverController extends Controller
 {
-    public function getApi($city_var,$places_var,$radius_var)
+    public function getApi($ll_var,$places_var,$radius_var)
     {
-
-        if ($city_var == '35.6762,139.6503') {
+        if ($ll_var == '35.6762,139.6503') {
             $city = 'Tokyo';
-        } elseif ($city_var == '35.4437,139.6380') {
+        } elseif ($ll_var == '35.4437,139.6380') {
             $city = 'Yokohama';
-        } elseif($city_var == '35.0116,135.7681') {
+        } elseif($ll_var == '35.0116,135.7681') {
             $city= 'Kyoto';
-        } elseif ($city_var == '34.6937,135.5023') {
+        } elseif ($ll_var == '34.6937,135.5023') {
             $city = 'Osaka';
-        } elseif ($city_var == '43.0618,141.3545') {
+        } elseif ($ll_var == '43.0618,141.3545') {
             $city = 'Sapporo';
         } else {
             $city = 'Nagoya';
@@ -32,12 +31,12 @@ class ApiRecieverController extends Controller
 
         $places_api = $client->request('GET', 'https://api.foursquare.com/v3/places/search', [
 
-            'query'=>[
-                'll' => $city_var,
-                'radius'=>$radius_var,
-                'query'=>$places_var,
-                'limit'=>50,
-                'fields'=>'name,photos,location,rating,fsq_id'
+            'query' => [
+                'll' => $ll_var,
+                'radius' => $radius_var,
+                'query' => $places_var,
+                'limit' => 50,
+                'fields' => 'name,photos,location,rating,fsq_id'
             ],
             'headers' => [
                 'Accept' => 'application/json',
@@ -46,16 +45,16 @@ class ApiRecieverController extends Controller
         ]);
 
         $weather_api = $client->request('GET','https://api.openweathermap.org/data/2.5/weather',[
-            'query'=>[
-                'q'=>$city,
+            'query' => [
+                'q' => $city,
                 'appid' => $openweather_key,
             ]
         ]);
 
         return
             [
-                'places_api'=>$places_api,
-                'weather_api'=>$weather_api
+                'places_api' => $places_api,
+                'weather_api' => $weather_api
             ];
     }
 }

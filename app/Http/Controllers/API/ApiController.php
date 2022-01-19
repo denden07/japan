@@ -4,22 +4,22 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Classes\ApiRecieverController;
+use App\Http\Controllers\Classes\ApiReceiverController;
 
 class ApiController extends Controller
 {
     public function variables(Request $request)
     {
-        $city = $request->city;
+        $ll = $request->ll;
         $places = $request->places;
         $radius = $request->radius;
 
-        $api_receiver = new ApiRecieverController();
-        $api_result_response = $api_receiver->getApi($city, $places, $radius);
+        $api_receiver = new ApiReceiverController();
+        $api_result_response = $api_receiver->getApi($ll, $places, $radius);
 
         return
             [
-                'city' => $city,
+                'll' => $ll,
                 'places' => $places,
                 'radius' => $radius,
                 'places_api' => $api_result_response['places_api']->getBody(),
@@ -29,7 +29,6 @@ class ApiController extends Controller
 
     public function redirectFetchPlaces(Request $request)
     {
-
         $api_variables = $this->variables($request);
 
         return view('pages.places')->with(
@@ -37,7 +36,7 @@ class ApiController extends Controller
                 'places_data' => $api_variables['places_api'],
                 'places_description'=> json_encode($api_variables['places']),
                 'radius_data'=> $api_variables['radius'],
-                'll_data'=> json_encode($api_variables['city']),
+                'll_data'=> json_encode($api_variables['ll']),
                 'weather_data'=> $api_variables['weather_api'],
             ]);
 
@@ -45,7 +44,6 @@ class ApiController extends Controller
 
     public function fetchPlaces(Request $request)
     {
-
         $api_variables = $this->variables($request);
 
         return response()->json(
@@ -58,14 +56,13 @@ class ApiController extends Controller
 
     public function fetchPlaceDescription(Request $request)
     {
-
         $client = new \GuzzleHttp\Client();
 
         $foursquare_key = env("FOURSQUARE_KEY");
 
         $places_description = $client->request('GET', 'https://api.foursquare.com/v3/places/' . $request->fsq_id , [
 
-            'query'=>[
+            'query' => [
                 'fields'=>'tips,location,stats,rating,description,hours,website,email,photos,name,categories,hours_popular,tastes'
             ],
 

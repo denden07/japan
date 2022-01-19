@@ -17,7 +17,7 @@
 
 
 
-            <select class="" id="city-select" name="city" required>
+            <select class="" id="city-select" name="ll" required>
                 <option value="" disabled selected>Top Cities</option>
                 <option value="35.6762,139.6503">Tokyo</option>
                 <option value="35.4437,139.6380">Yokohama</option>
