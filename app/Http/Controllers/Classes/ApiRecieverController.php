@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class ApiRecieverController extends Controller
 {
-
     public function getApi($city_var,$places_var,$radius_var)
     {
 
@@ -59,5 +58,4 @@ class ApiRecieverController extends Controller
                 'weather_api'=>$weather_api
             ];
     }
-
 }

@@ -8,7 +8,6 @@ use App\Http\Controllers\Classes\ApiRecieverController;
 
 class ApiController extends Controller
 {
-
     public function variables(Request $request)
     {
         $city = $request->city;
