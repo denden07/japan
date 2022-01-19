@@ -15,7 +15,7 @@ class ApiController extends Controller
         $radius = $request->radius;
 
         $api_receiver = new ApiRecieverController();
-        $api_result_response = $api_receiver ->getApi($city, $places, $radius);
+        $api_result_response = $api_receiver->getApi($city, $places, $radius);
 
         return
             [
