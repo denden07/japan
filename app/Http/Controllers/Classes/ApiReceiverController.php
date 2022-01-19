@@ -40,7 +40,7 @@ class ApiReceiverController extends Controller
             ],
             'headers' => [
                 'Accept' => 'application/json',
-                'Authorization' =>$foursquare_key ,
+                'Authorization' => $foursquare_key ,
             ],
         ]);
 

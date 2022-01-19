@@ -34,10 +34,10 @@ class ApiController extends Controller
         return view('pages.places')->with(
             [
                 'places_data' => $api_variables['places_api'],
-                'places_description'=> json_encode($api_variables['places']),
-                'radius_data'=> $api_variables['radius'],
-                'll_data'=> json_encode($api_variables['ll']),
-                'weather_data'=> $api_variables['weather_api'],
+                'places_description' => json_encode($api_variables['places']),
+                'radius_data' => $api_variables['radius'],
+                'll_data' => json_encode($api_variables['ll']),
+                'weather_data' => $api_variables['weather_api'],
             ]);
 
     }
@@ -49,7 +49,7 @@ class ApiController extends Controller
         return response()->json(
             [
                 'places_data' => json_decode($api_variables['places_api']),
-                'weather_data'=> json_decode($api_variables['weather_api']),
+                'weather_data' => json_decode($api_variables['weather_api']),
             ]);
 
     }
@@ -63,7 +63,7 @@ class ApiController extends Controller
         $places_description = $client->request('GET', 'https://api.foursquare.com/v3/places/' . $request->fsq_id , [
 
             'query' => [
-                'fields'=>'tips,location,stats,rating,description,hours,website,email,photos,name,categories,hours_popular,tastes'
+                'fields' => 'tips,location,stats,rating,description,hours,website,email,photos,name,categories,hours_popular,tastes'
             ],
 
             'headers' => [
